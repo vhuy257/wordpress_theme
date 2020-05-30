@@ -28,3 +28,68 @@
 		<?php
 	}
 	?>
+
+	<div class="header-navigation-wrapper">
+
+	<?php
+	if ( has_nav_menu( 'primary' ) || ! has_nav_menu( 'expanded' ) ) {
+		?>
+			<nav class="primary-menu-wrapper" aria-label="<?php esc_attr_e( 'Horizontal', 'twentytwenty' ); ?>" role="navigation">
+				<ul class="primary-menu reset-list-style">
+				<?php
+				if ( has_nav_menu( 'primary' ) ) {
+					wp_nav_menu(
+						array(
+							'container'  => '',
+							'items_wrap' => '%3$s',
+							'theme_location' => 'primary',
+						)
+					);
+				} elseif ( ! has_nav_menu( 'expanded' ) ) {
+					wp_list_pages(
+						array(
+							'match_menu_classes' => true,
+							'show_sub_menu_icons' => true,
+							'title_li' => false,
+							'walker'   => new TwentyTwenty_Walker_Page(),
+						)
+					);
+				}
+				?>
+				</ul>
+			</nav><!-- .primary-menu-wrapper -->
+		<?php
+	}
+	if ( true === $enable_header_search || has_nav_menu( 'expanded' ) ) {
+		?>
+		<div class="header-toggles hide-no-js">
+		<?php
+		if ( has_nav_menu( 'expanded' ) ) {
+			?>
+			<div class="toggle-wrapper nav-toggle-wrapper has-expanded-menu">
+				<button class="toggle nav-toggle desktop-nav-toggle" data-toggle-target=".menu-modal" data-toggle-body-class="showing-menu-modal" aria-expanded="false" data-set-focus=".close-nav-toggle">
+					<span class="toggle-inner">
+						<span class="toggle-text"><?php _e( 'Menu', 'fiora' ); ?></span>
+					</span>
+				</button><!-- .nav-toggle -->
+			</div><!-- .nav-toggle-wrapper -->
+			<?php
+		}
+		if ( true === $enable_header_search ) {
+			?>
+			<div class="toggle-wrapper search-toggle-wrapper">
+				<button class="toggle search-toggle desktop-search-toggle" data-toggle-target=".search-modal" data-toggle-body-class="showing-search-modal" data-set-focus=".search-modal .search-field" aria-expanded="false">
+					<span class="toggle-inner">
+						<?php twentytwenty_the_theme_svg( 'search' ); ?>
+						<span class="toggle-text"><?php _e( 'Search', 'twentytwenty' ); ?></span>
+					</span>
+				</button><!-- .search-toggle -->
+			</div> dsaadsadsad
+			<?php
+		}
+		?>
+		</div><!-- .header-toggles -->
+		<?php
+	}
+	?>
+	</div><!-- .header-navigation-wrapper -->
