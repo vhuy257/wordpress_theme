@@ -18,13 +18,31 @@
 		<?php wp_head(); ?>
 	</head>
 	<body <?php body_class(); ?>>
-	<header>
+	<header class="top-header">
 		<div class="top-content">
 			<div class="container">
 				<div class="text-promo">Mắt kính hàng hiệu - HotLine: 0933 515 559</div>
 			</div>
 		</div>
 		<div class="logo__wrapper">
+			<?php 
+				if ( true === $enable_header_search || has_nav_menu( 'expanded' ) ) {
+			?>
+				<div class="header-toggles hide-no-js">
+				<?php
+				if ( has_nav_menu( 'expanded' ) ) {
+					?>
+					<div class="toggle-wrapper nav-toggle-wrapper has-expanded-menu">
+						<button class="toggle nav-toggle desktop-nav-toggle" data-toggle-target=".menu-modal" data-toggle-body-class="showing-menu-modal" aria-expanded="false" data-set-focus=".close-nav-toggle">
+							<i class="icon-menu icons"></i>
+						</button><!-- .nav-toggle -->
+					</div><!-- .nav-toggle-wrapper -->
+					<?php
+				}
+				?>
+				</div><!-- .header-toggles -->
+				<?php
+			} ?>
 			<?php
 			// Display the Custom Logo
 			the_custom_logo();
@@ -38,7 +56,6 @@
 		</div>
 	
 	<div class="header-navigation-wrapper container">
-
 	<?php
 	if ( has_nav_menu( 'primary' ) || ! has_nav_menu( 'expanded' ) ) {
 		?>
@@ -66,37 +83,6 @@
 				?>
 				</ul>
 			</nav><!-- .primary-menu-wrapper -->
-		<?php
-	}
-	if ( true === $enable_header_search || has_nav_menu( 'expanded' ) ) {
-		?>
-		<div class="header-toggles hide-no-js">
-		<?php
-		if ( has_nav_menu( 'expanded' ) ) {
-			?>
-			<div class="toggle-wrapper nav-toggle-wrapper has-expanded-menu">
-				<button class="toggle nav-toggle desktop-nav-toggle" data-toggle-target=".menu-modal" data-toggle-body-class="showing-menu-modal" aria-expanded="false" data-set-focus=".close-nav-toggle">
-					<span class="toggle-inner">
-						<span class="toggle-text"><?php _e( 'Menu', 'fiora' ); ?></span>
-					</span>
-				</button><!-- .nav-toggle -->
-			</div><!-- .nav-toggle-wrapper -->
-			<?php
-		}
-		if ( true === $enable_header_search ) {
-			?>
-			<div class="toggle-wrapper search-toggle-wrapper">
-				<button class="toggle search-toggle desktop-search-toggle" data-toggle-target=".search-modal" data-toggle-body-class="showing-search-modal" data-set-focus=".search-modal .search-field" aria-expanded="false">
-					<span class="toggle-inner">
-						<?php twentytwenty_the_theme_svg( 'search' ); ?>
-						<span class="toggle-text"><?php _e( 'Search', 'twentytwenty' ); ?></span>
-					</span>
-				</button><!-- .search-toggle -->
-			</div>
-			<?php
-		}
-		?>
-		</div><!-- .header-toggles -->
 		<?php
 	}
 	?>

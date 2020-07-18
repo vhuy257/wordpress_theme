@@ -1,0 +1,16 @@
+@media screen and (max-width: $mobile) {
+    .logo__wrapper {
+        position: relative;
+        .toggle-wrapper {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .header-toggles {
+            i {
+                font-size: 20px;
+            }
+        }
+    }
+}
